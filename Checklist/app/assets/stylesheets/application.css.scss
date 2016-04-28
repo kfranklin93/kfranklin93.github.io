@@ -1,0 +1,110 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import url(https://fonts.googleapis.com/css?family=Boogaloo);
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+/* Mixins, variables, etc... */
+
+@mixin nav_link_hover {
+	transition: 0.4s;
+	color: lighten(#222, 30%);
+	text-decoration: none;
+}
+
+/* Universal styles */
+
+body {
+	font-family: 'Boogaloo', 'Merriweather', serif;
+	color: white;
+	background-image: url("http://www.modwedding.com/wp-content/uploads/2014/05/wedding-reception-ideas-3-05192014.jpeg");
+  background-repeat: repeat-y;
+
+}
+
+a {
+	color: #e7e7e7;
+}
+
+/* Navbar and navigation styles */
+
+.navbar {
+	font-family: 'Boogaloo', sans-serif;
+	text-transform: uppercase;
+}
+
+.navbar-default {
+	opacity: .5;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: #fff;
+
+	.navbar-nav > li > a {
+		color: #222;
+	}
+
+	.navbar-link {
+		color: #222;
+	}
+
+	.navbar-brand {
+		color: #222;
+		letter-spacing: 1.25px;
+	}
+
+}
+
+/* Item styles */
+
+.item {
+	border-bottom: 1px solid #e7e7e7;
+	padding-bottom: 1.5em;
+	.item-title {
+		font-family: 'Boogaloo', sans-serif;
+		color: white;
+		margin-top: 0;
+	}
+	.item-desc {
+		font-size: 1em;
+		color: white;
+	}
+	.time-ago {
+		color: white;
+		font-size: 0.85em;
+		letter-spacing: 1.25;
+	}
+	.item-sub-title {
+	color: darken white;
+		margin-bottom: 0;
+	}
+}
+
+.item:nth-child(n+1) {
+	padding-top: 1.5em;
+}
+.jumbotron {
+	opacity: .7;
+	color: black;
+}
+.signinform{
+	color: white;
+	opacity: .7;
+}
+.showitem{
+		color: white;
+	opacity: .7;
+}
