@@ -70,3 +70,22 @@ const lastUpdated = new Date(repo.pushed_at).toLocaleDateString(
     // Call the function to populate the projects
     fetchGitHubProjects();
 });
+document.addEventListener('DOMContentLoaded', () => {
+    // Select all the expand buttons
+    const expandButtons = document.querySelectorAll('.expand-btn');
+
+    // Loop through each button and add a click event listener
+    expandButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Find the parent card of the clicked button
+            const card = button.closest('.card');
+            
+            // Find the list of details within that card
+            const details = card.querySelector('.card-details');
+            
+            // Toggle the 'expanded' class on both the button and the details list
+            button.classList.toggle('expanded');
+            details.classList.toggle('expanded');
+        });
+    });
+});

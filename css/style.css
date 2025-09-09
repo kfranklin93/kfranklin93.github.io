@@ -10,6 +10,50 @@
     --font-mono: 'Roboto Mono', monospace;
 }
 
+/* Card Header Styles */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+/* Expand Button Styles */
+.expand-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #4CAF50; /* A nice green color */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    font-weight: 600;
+    line-height: 1; /* Aligns the plus sign better */
+}
+
+/* Rotate the button when expanded */
+.expand-btn.expanded {
+    transform: rotate(45deg);
+}
+
+/* Card Details (the list) Styles */
+.card-details {
+    padding-left: 20px;
+    margin: 0;
+    list-style-type: disc; /* Use a more subtle bullet point */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+
+/* When the card is expanded, show the list */
+.card-details.expanded {
+    max-height: 500px; /* A value large enough to show all content */
+    padding-bottom: 15px; /* Add some space at the bottom */
+}
+
 .project-date {
     font-size: 0.85rem;
     color: var(--border-color);
@@ -210,4 +254,38 @@ a:hover {
     .nav-links {
         gap: 1rem;
     }
+}
+/* ======================== */
+/* Certifications & Clearances Section */
+/* ======================== */
+.certifications-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+/* Certifications Grid Layout */
+.certifications-grid {
+    display: grid;
+    /* This creates a responsive grid that can fit a variable number of cards */
+    /* It will try to fit as many columns as possible, with a minimum width of 280px */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+}
+
+/* The .card class is already styled, so these cards will inherit the same appearance */
+/* We can add specific styling here if needed, but the base `.card` styling should be sufficient */
+
+.certifications-grid .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* This centers the content vertically */
+    align-items: center; /* This centers the content horizontally */
+    min-height: 150px; /* Gives the cards a consistent height */
+    text-align: center; /* Ensures text inside is centered */
+}
+
+/* Styling for the H3 within the card */
+.certifications-grid .card h3 {
+    margin-bottom: 5px;
 }
