@@ -70,20 +70,38 @@ const lastUpdated = new Date(repo.pushed_at).toLocaleDateString(
     // Call the function to populate the projects
     fetchGitHubProjects();
 });
-document.addEventListener('DOMContentLoaded', () => {
-    // Select all the expand buttons
-    const expandButtons = document.querySelectorAll('.expand-btn');
+// document.addEventListener('DOMContentLoaded', () => {
+//     // Select all the expand buttons
+//     const expandButtons = document.querySelectorAll('.expand-btn');
 
-    // Loop through each button and add a click event listener
-    expandButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Find the parent card of the clicked button
-            const card = button.closest('.card');
+//     // Loop through each button and add a click event listener
+//     expandButtons.forEach(button => {
+//         button.addEventListener('click', () => {
+//             // Find the parent card of the clicked button
+//             const card = button.closest('.card');
             
-            // Find the list of details within that card
-            const details = card.querySelector('.card-details');
+//             // Find the list of details within that card
+//             const details = card.querySelector('.card-details');
             
-            // Toggle the 'expanded' class on both the button and the details list
+//             // Toggle the 'expanded' class on both the button and the details list
+//             button.classList.toggle('expanded');
+//             details.classList.toggle('expanded');
+//         });
+//     });
+// });
+document.addEventListener('DOMContentLoaded', () => {
+    // Select all the card headers
+    const cardHeaders = document.querySelectorAll('.card-header');
+
+    // Loop through each header and add a click event listener
+    cardHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            // Find the button and the details list within that header's parent card
+            const button = header.querySelector('.expand-btn');
+            const details = header.nextElementSibling; // The ul.card-details is the next sibling
+            
+            // Toggle the 'expanded' class on both the header and the details list
+            header.classList.toggle('expanded');
             button.classList.toggle('expanded');
             details.classList.toggle('expanded');
         });

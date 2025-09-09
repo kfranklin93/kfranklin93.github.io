@@ -10,48 +10,98 @@
     --font-mono: 'Roboto Mono', monospace;
 }
 
-/* Card Header Styles */
-.card-header {
+ /* Card Header Styles */
+.card .card-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px; /* Increased padding for a cleaner look */
+    border-bottom: 1px solid var(--surface-color); /* Subtle border for separation */
     cursor: pointer;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
+    transition: background-color 0.3s ease;
 }
 
-/* Expand Button Styles */
+/* Add a hover effect to the card header */
+.card .card-header:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* Soft, subtle background change on hover */
+}
+
+/* When the card is expanded, add a visual highlight to the header */
+.card-header.expanded {
+    background-color: var(--surface-color);
+    border-color: var(--border-color); /* Change border color to highlight */
+}
+
+/* Expand Button Styles - Animated Plus/Minus */
 .expand-btn {
     background: none;
     border: none;
-    font-size: 2rem;
-    color: #4CAF50; /* A nice green color */
     cursor: pointer;
-    transition: transform 0.3s ease;
-    font-weight: 600;
-    line-height: 1; /* Aligns the plus sign better */
+    position: relative;
+    width: 24px;
+    height: 24px;
 }
 
-/* Rotate the button when expanded */
-.expand-btn.expanded {
-    transform: rotate(45deg);
+/* The vertical line of the plus sign */
+.expand-btn::before, .expand-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+/* The horizontal line of the plus sign */
+.expand-btn::before {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* When expanded, the horizontal line rotates to form an 'X' with the vertical line */
+.expand-btn.expanded::before {
+    transform: translate(-50%, -50%) rotate(0deg); /* This line doesn't rotate, but the other does to create a smooth transition */
+}
+
+/* When the button is expanded, the vertical line rotates to form an 'X' */
+.expand-btn::after {
+    transform: translate(-50%, -50%);
+}
+.expand-btn.expanded::after {
+    transform: translate(-50%, -50%) rotate(90deg);
 }
 
 /* Card Details (the list) Styles */
 .card-details {
-    padding-left: 20px;
+    padding: 0 20px;
+    list-style-type: none; /* Removed the default bullet points */
     margin: 0;
-    list-style-type: disc; /* Use a more subtle bullet point */
-    max-height: 0;
+    max-height: 0; /* Starts hidden */
     overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.card-details li {
+    padding-left: 1.5em; /* Add space for the custom bullet point */
+    position: relative;
+    margin-bottom: 10px;
+}
+
+/* Custom bullet points using a pseudo-element for a cleaner look */
+.card-details li::before {
+    content: '•';
+    color: var(--border-color); /* Use a brand color for the bullet point */
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 /* When the card is expanded, show the list */
 .card-details.expanded {
     max-height: 500px; /* A value large enough to show all content */
-    padding-bottom: 15px; /* Add some space at the bottom */
+    padding-bottom: 20px; /* Add some space at the bottom */
 }
 
 .project-date {
