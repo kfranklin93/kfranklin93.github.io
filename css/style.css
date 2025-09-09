@@ -38,7 +38,7 @@ body {
 .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 1rem; /* Adjusted for mobile-first approach */
+    padding: 0 1rem; /* Mobile-first padding */
 }
 
 /* ======================== */
@@ -50,9 +50,9 @@ h1, h2, h3 {
     color: var(--primary-color);
 }
 
-h1 { font-size: 2.5rem; } /* Adjusted for mobile */
+h1 { font-size: 2.5rem; }
 h2 {
-    font-size: 2rem; /* Adjusted for mobile */
+    font-size: 2rem;
     border-bottom: 2px solid var(--accent-color);
     display: inline-block;
     padding-bottom: 0.5rem;
@@ -89,24 +89,35 @@ a:hover {
 
 .navbar .container {
     display: flex;
-    flex-direction: column; /* Stacks items vertically on mobile */
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
 }
 
 .nav-brand {
     font-size: 1.5rem;
     font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 1rem; /* Adds space between brand and links */
 }
 
 .nav-links {
     list-style-type: none;
     display: flex;
-    flex-wrap: wrap; /* Allows links to wrap to the next line */
+    flex-direction: column; /* Mobile-first stacking */
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--card-bg-color);
     justify-content: center;
-    gap: 1rem; /* Reduced gap for smaller screens */
+    align-items: center;
+    gap: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-links.is-active {
+    transform: translateX(0); /* Slides menu in */
 }
 
 .nav-links a {
@@ -117,9 +128,10 @@ a:hover {
 .nav-links a:hover {
     color: var(--accent-color);
 }
+
 /* Hamburger menu styles */
 .hamburger-btn {
-    display: none; /* Hidden on desktop by default */
+    display: flex; /* Shown on mobile */
     background: none;
     border: none;
     cursor: pointer;
@@ -189,6 +201,10 @@ main {
 section {
     padding: 2rem 0; /* Adjusted for mobile */
     text-align: center;
+}
+/* Adjustments to ensure headers are visible below the fixed navbar */
+section h2 {
+    scroll-margin-top: 6rem; /* Add space equal to the navbar's height */
 }
 
 .experience-section h2, .certifications-section h2, .project-section h2, .resume-section h2 {
@@ -412,9 +428,20 @@ section {
     }
 
     .nav-links {
-        gap: 1.5rem; /* Resets original link gap */
+        display: flex !important; /* Forces nav-links to show on desktop */
+        position: static;
+        flex-direction: row;
+        transform: none;
+        height: auto;
+        width: auto;
+        background-color: transparent;
+        gap: 1.5rem;
     }
     
+    .hamburger-btn {
+        display: none !important; /* Hides hamburger on desktop */
+    }
+
     h1 { font-size: 3.5rem; }
     h2 { font-size: 2.2rem; }
     
@@ -442,55 +469,5 @@ section {
     
     .project-grid {
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    }
-}
-/* ======================== */
-/* 10. Media Queries for Mobile */
-/* ======================== */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 1rem;
-    }
-
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
-    
-    .hero {
-        padding: 4rem 0;
-    }
-    
-    section {
-        padding: 2rem 0;
-    }
-
-    .hamburger-btn {
-        display: flex; /* Show the hamburger button on mobile */
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: var(--card-bg-color);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        transform: translateX(100%);
-    }
-
-    .nav-links.is-active {
-        transform: translateX(0); /* Slide in the menu */
-    }
-
-    /* All grids will be a single column on mobile */
-    .experience-grid, .certifications-grid, .project-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .tech-tags span {
-        font-size: 0.75rem;
     }
 }
