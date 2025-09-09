@@ -1,127 +1,37 @@
+/* ======================== */
 /* 1. CSS Variables for Theme Colors */
+/* ======================== */
 :root {
-    --bg-color: #161320;
-    --surface-color:  #2A233A;
-    --primary-color: #F0F0F0;
-    --text-color:  #D9D4E7;
-    --secondary-text-color: #9A86A8;
-    --border-color:  #F72585;
+    --bg-color: #0A0A0A;
+    --surface-color: #1A1A1A;
+    --card-surface-color: #242424;
+    --primary-color: #FFFFFF;
+    --accent-color: #00A6FF;
+    --secondary-text-color: #8C8C8C;
+    --border-color: #444444;
+    --glow-color: rgba(0, 166, 255, 0.4);
+
     --font-main: 'Poppins', sans-serif;
     --font-mono: 'Roboto Mono', monospace;
 }
 
- /* Card Header Styles */
-.card .card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px; /* Increased padding for a cleaner look */
-    border-bottom: 1px solid var(--surface-color); /* Subtle border for separation */
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Add a hover effect to the card header */
-.card .card-header:hover {
-    background-color: rgba(255, 255, 255, 0.05); /* Soft, subtle background change on hover */
-}
-
-/* When the card is expanded, add a visual highlight to the header */
-.card-header.expanded {
-    background-color: var(--surface-color);
-    border-color: var(--border-color); /* Change border color to highlight */
-}
-
-/* Expand Button Styles - Animated Plus/Minus */
-.expand-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    width: 24px;
-    height: 24px;
-}
-
-/* The vertical line of the plus sign */
-.expand-btn::before, .expand-btn::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 20px;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: transform 0.3s ease;
-}
-
-/* The horizontal line of the plus sign */
-.expand-btn::before {
-    transform: translate(-50%, -50%) rotate(90deg);
-}
-
-/* When expanded, the horizontal line rotates to form an 'X' with the vertical line */
-.expand-btn.expanded::before {
-    transform: translate(-50%, -50%) rotate(0deg); /* This line doesn't rotate, but the other does to create a smooth transition */
-}
-
-/* When the button is expanded, the vertical line rotates to form an 'X' */
-.expand-btn::after {
-    transform: translate(-50%, -50%);
-}
-.expand-btn.expanded::after {
-    transform: translate(-50%, -50%) rotate(90deg);
-}
-
-/* Card Details (the list) Styles */
-.card-details {
-    padding: 0 20px;
-    list-style-type: none; /* Removed the default bullet points */
-    margin: 0;
-    max-height: 0; /* Starts hidden */
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out;
-}
-
-.card-details li {
-    padding-left: 1.5em; /* Add space for the custom bullet point */
-    position: relative;
-    margin-bottom: 10px;
-}
-
-/* Custom bullet points using a pseudo-element for a cleaner look */
-.card-details li::before {
-    content: '•';
-    color: var(--border-color); /* Use a brand color for the bullet point */
-    font-size: 1.2em;
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-
-/* When the card is expanded, show the list */
-.card-details.expanded {
-    max-height: 500px; /* A value large enough to show all content */
-    padding-bottom: 20px; /* Add some space at the bottom */
-}
-
-.project-date {
-    font-size: 0.85rem;
-    color: var(--border-color);
-    margin-top: auto; /* Pushes date to the bottom with the links */
-    padding-top: 1rem;
-}
-
+/* ======================== */
 /* 2. Global & Body Styles */
+/* ======================== */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-main);
     background-color: var(--bg-color);
-    color: var(--text-color);
+    color: var(--primary-color);
     line-height: 1.6;
 }
 
@@ -131,21 +41,25 @@ body {
     padding: 0 2rem;
 }
 
+/* ======================== */
 /* 3. Typography & Links */
+/* ======================== */
 h1, h2, h3 {
     line-height: 1.2;
     margin-bottom: 1rem;
-    color: #ffffff;
+    color: var(--primary-color);
 }
 
-h1 { font-size: 3rem; }
+h1 { font-size: 3.5rem; }
 h2 {
     font-size: 2.2rem;
-    border-bottom: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
     display: inline-block;
     padding-bottom: 0.5rem;
     margin-bottom: 2rem;
+    text-shadow: 0 0 5px var(--glow-color); /* Subtle glow effect */
 }
+h3 { font-size: 1.5rem; }
 
 p {
     margin-bottom: 1rem;
@@ -153,16 +67,18 @@ p {
 }
 
 a {
-    color: var(--primary-color);
+    color: var(--accent-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #ffffff;
+    color: var(--primary-color);
 }
 
+/* ======================== */
 /* 4. Navigation Bar */
+/* ======================== */
 .navbar {
     background-color: var(--surface-color);
     border-bottom: 1px solid var(--border-color);
@@ -181,7 +97,7 @@ a:hover {
 .nav-brand {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--primary-color);
 }
 
 .nav-links {
@@ -190,42 +106,240 @@ a:hover {
     gap: 1.5rem;
 }
 
+.nav-links a {
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+
+/* ======================== */
 /* 5. Hero Section */
+/* ======================== */
 .hero {
     text-align: center;
-    padding: 5rem 0;
+    padding: 6rem 0;
     background-color: var(--bg-color);
+}
+
+.hero h1, .hero-subtitle {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.hero h1 {
+    animation-delay: 0.2s;
 }
 
 .hero-subtitle {
     font-size: 1.2rem;
     color: var(--secondary-text-color);
+    animation-delay: 0.5s;
 }
 
-/* 6. Project Cards & Grid */
-.project-section, .resume-section {
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* ======================== */
+/* 6. Main Sections & Cards */
+/* ======================== */
+main {
+    padding-top: 2rem;
+}
+
+section {
     padding: 4rem 0;
+    text-align: center;
 }
 
+.experience-section h2, .certifications-section h2, .project-section h2, .resume-section h2 {
+    text-align: left;
+}
+
+.card {
+    background-color: var(--card-surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* .experience-grid, .certifications-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+} */
+/* ======================== */
+/* 6. Main Sections & Cards */
+/* ======================== */
+
+.experience-grid, .certifications-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+    align-items: stretch; /* Ensures all grid items in a row have the same height */
+}
+
+/* Certifications Grid - responsive layout */
+.certifications-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    text-align: center;
+    justify-content: flex-start;
+}
+
+.certifications-grid .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Aligns content to the top */
+    align-items: center; /* Centers the content horizontally */
+}
+/* Experience Grid - responsive layout */
+.experience-grid {
+    grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+    .experience-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1024px) {
+    .experience-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Certifications Grid - responsive layout */
+.certifications-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    text-align: center;
+}
+
+/* ======================== */
+/* 7. Interactive Components */
+/* ======================== */
+
+/* Experience Cards */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-header:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.card-header.expanded {
+    background-color: rgba(0, 166, 255, 0.1);
+    border-color: var(--accent-color);
+}
+
+.expand-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.expand-btn::before, .expand-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.expand-btn::before {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.expand-btn.expanded::before {
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.expand-btn::after {
+    transform: translate(-50%, -50%);
+}
+
+.expand-btn.expanded::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.card-details {
+    padding: 0 20px;
+    list-style-type: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.card-details.expanded {
+    max-height: 500px;
+    padding: 20px;
+}
+
+.card-details li {
+    padding-left: 1.5em;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.card-details li::before {
+    content: '•';
+    color: var(--accent-color);
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Project Cards */
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
+    margin-top: 2rem;
 }
 
 .project-card {
-    background-color: var(--surface-color);
+    background-color: var(--card-surface-color);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0, 170, 255, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px var(--glow-color); /* Added a glow on hover */
+}
+
+.project-card h3 {
+    color: var(--accent-color);
 }
 
 .tech-tags {
@@ -244,8 +358,15 @@ a:hover {
     font-size: 0.8rem;
 }
 
+.project-date {
+    font-size: 0.85rem;
+    color: var(--secondary-text-color);
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
 .project-links {
-    margin-top: auto; /* Pushes links to the bottom */
+    margin-top: auto;
     padding-top: 1rem;
     display: flex;
     gap: 1rem;
@@ -256,33 +377,29 @@ a:hover {
     font-weight: 600;
 }
 
-.repo-link.private {
-    color: var(--secondary-text-color);
-    cursor: not-allowed;
-}
-
-/* 7. Buttons & CTAs */
+/* 8. Buttons & CTAs */
 .btn {
     display: inline-block;
-    background-color: var(--primary-color);
-    color: #111;
-    padding: 0.6rem 1.2rem;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    padding: 0.8rem 1.6rem;
     border-radius: 5px;
     font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #33bbff;
+    background-color: var(--primary-color);
     transform: translateY(-2px);
-    color: #111;
+    box-shadow: 0 0 10px var(--glow-color);
+    color: var(--bg-color);
 }
 
 .resume-section {
     text-align: center;
 }
 
-/* 8. Footer */
+/* 9. Footer */
 .footer {
     text-align: center;
     padding: 2rem 0;
@@ -290,52 +407,4 @@ a:hover {
     background-color: var(--surface-color);
     border-top: 1px solid var(--border-color);
     color: var(--secondary-text-color);
-}
-
-/* 9. Responsive Design */
-@media (max-width: 768px) {
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 1.8rem; }
-    
-    .nav-brand {
-        font-size: 1.2rem;
-    }
-    
-    .nav-links {
-        gap: 1rem;
-    }
-}
-/* ======================== */
-/* Certifications & Clearances Section */
-/* ======================== */
-.certifications-section {
-    padding: 60px 0;
-    text-align: center;
-}
-
-/* Certifications Grid Layout */
-.certifications-grid {
-    display: grid;
-    /* This creates a responsive grid that can fit a variable number of cards */
-    /* It will try to fit as many columns as possible, with a minimum width of 280px */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 40px;
-}
-
-/* The .card class is already styled, so these cards will inherit the same appearance */
-/* We can add specific styling here if needed, but the base `.card` styling should be sufficient */
-
-.certifications-grid .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* This centers the content vertically */
-    align-items: center; /* This centers the content horizontally */
-    min-height: 150px; /* Gives the cards a consistent height */
-    text-align: center; /* Ensures text inside is centered */
-}
-
-/* Styling for the H3 within the card */
-.certifications-grid .card h3 {
-    margin-bottom: 5px;
 }
