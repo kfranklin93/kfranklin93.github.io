@@ -2,16 +2,21 @@
 /* 1. CSS Variables for Theme Colors */
 /* ======================== */
 :root {
-    --bg-color: #FFFFFF;
+    --bg-color: #ffffffc1;
     --surface-color: #f9f9f9ca;
     --card-bg-color: #FFFFFF;
     --primary-color: #111111;
-    --accent-color: #1F8A70; /* New green accent color */
-    --gold-accent: #B2943B; /* Gold accent for highlights */
-    --secondary-text-color: #666666;
+    
+    /* --- Bolder Accent Colors --- */
+    --accent-color: #007e39;       /* A rich, modern jungle green */
+    --gold-accent: #F2C94C;        /* Bright gold */
+    
+    --secondary-text-color: #4e4d4d;
     --border-color: #E0E0E0;
-    --glow-color: rgba(31, 138, 112, 0.4); /* Green glow */
-    --gold-glow-color: rgba(255, 201, 5, 0.869); /* Gold glow */
+    
+    /* --- Updated Glow Colors --- */
+    --glow-color: rgba(22, 160, 133, 0.4); /* Matching green glow */
+    --gold-glow-color: rgba(242, 201, 76, 0.5); /* Gold glow updated to match */
 
     --font-main: 'Poppins', sans-serif;
     --font-mono: 'Roboto Mono', monospace;
@@ -50,6 +55,7 @@ h1, h2, h3 {
     line-height: 1.2;
     margin-bottom: 1rem;
     color: var(--primary-color);
+    text-shadow: 0 0 6px var(--glow-color); /* Subtle glow effect */
 }
 
 h1 { font-size: 2.5rem;
@@ -168,123 +174,130 @@ a:hover {
 }
 
 /* ======================== */
-/* 5. Hero Section */
+/* 5. Hero Section (New) */
 /* ======================== */
 .hero {
     background-color: var(--surface-color);
-    padding: 4rem 1rem;
-    text-align: center;
+    padding: 3rem 1rem;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
 }
 
 .hero-content {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile-first: single column */
+    gap: 3rem;
     align-items: center;
-    gap: 2.5rem; /* Creates space between the text and the card */
-    max-width: 1100px;
-    margin: 0 auto;
+    max-width: 1200px;
 }
 
 .hero-text-container {
-    max-width: 800px; /* Keeps headline readable */
+    text-align: center; /* Center text on mobile */
     opacity: 0;
     animation: fadeIn 1s 0.2s forwards;
 }
 
-.hero h1 {
-    font-size: 2.6rem;
-    line-height: 1.3;
-    text-shadow: 0 0 5px var(--glow-color);
+.hero-headline {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--secondary-text-color);
-    max-width: 650px;
-    margin: 1rem auto 0;
+    max-width: 500px;
+    margin: 0 auto 2rem; /* Center and add space below */
+}
+
+.hero-cta {
+    display: flex;
+    flex-direction: column; /* Stack buttons on mobile */
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.link-icon {
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.link-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.link-icon:hover svg {
+    transform: translateX(4px);
+}
+
+
+/* ======================== */
+/* 5.1. Contact Card Styling (New) */
+/* ======================== */
+.contact-card {
+    background-color: var(--card-bg-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     opacity: 0;
     animation: fadeIn 1s 0.5s forwards;
 }
 
-@keyframes fadeIn {
-    to { opacity: 1; }
-}
-
-/* ======================== */
-/* 5.1. Contact Card Styling */
-/* ======================== */
-.contact-card {
-    background-color: var(--card-bg-color);
-    padding: 2.5rem;
-    border-radius: 1rem;
-    text-align: center;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease-in-out;
-    position: relative;
-    z-index: 10;
-    max-width: 800px; /* Match the text container for perfect alignment */
-    width: 100%;
-    margin-top: 0; /* Remove the overlap */
-    opacity: 0;
-    animation: fadeIn 1s 0.8s forwards; /* Fade in the card last */
-}
-
-.contact-card:hover {
-    transform: translateY(-5px);
-}
-
 .contact-header-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 .contact-photo-container {
-    width: 6rem;
-    height: 6rem;
-    background-color: var(--surface-color);
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    margin: 0 auto 1rem;
+    background-color: var(--surface-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    border: 4px solid var(--card-bg-color);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .contact-photo-svg {
-    width: 4rem;
-    height: 4rem;
-    color: var(--secondary-text-color);
+    width: 3rem;
+    height: 3rem;
 }
 
-.contact-card h1 {
-    font-size: 1.875rem;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    color: var(--primary-color);
+.contact-card h2 {
+    font-size: 1.5rem;
+    border-bottom: none; /* Remove the underline */
+    text-shadow: none;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 6px var(--glow-color); /* Subtle glow effect */
 }
 
 .card-subtitle {
-    font-size: 1.25rem;
-    font-weight: 500;
     color: var(--secondary-text-color);
+    font-size: 1rem;
 }
 
 .contact-info-grid {
-    margin-top: 2rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    text-align: left;
+    gap: 1rem;
 }
 
 .contact-info-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
+    font-size: 0.9rem;
 }
+.contact-info-item:hover{
+    text-shadow: 0 0 6px var(--glow-color); /* Subtle glow effect */
+}
+
 
 .icon-link {
     display: inline-flex;
@@ -296,6 +309,7 @@ a:hover {
     border-radius: 50%;
     color: var(--secondary-text-color);
     transition: background-color 0.3s ease;
+    flex-shrink: 0;
 }
 
 .icon-link:hover {
@@ -317,31 +331,6 @@ a:hover {
 .contact-info-item a:hover {
     text-decoration: underline;
 }
-
-.cta-section {
-    margin-top: 2.5rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--border-color);
-}
-/* V V V PASTE THE NEW CODE HERE V V V */
-#scrollToTopBtn {
-    padding: 12px;
-    font-size: 16px;
-    right: 20px;
-    bottom: 20px;
-}
-
-.cta-section h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary-color);
-}
-
-.cta-section p {
-    margin-top: 0.5rem;
-    color: var(--secondary-text-color);
-}
-
 /* ======================== */
 /* 5.2. Summary & Competencies Section */
 /* ======================== */
@@ -440,6 +429,46 @@ section {
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+/* Add background colors to create visual rhythm */
+#summary,
+#experience,
+#projects,
+#resume,
+#certifications {
+    padding: 4rem 1rem; /* Standardize padding */
+}
+
+/* Make "About Me" and "Projects" stand out */
+.about-section,
+.project-section {
+    background-color: var(--surface-color);
+}
+
+/* Add a high-impact, full-width color block for the CTA */
+.project-cta {
+    background-color: var(--accent-color);
+    color: var(--card-bg-color);
+    margin-top: 4rem;
+    padding: 3rem 1.5rem;
+    border-radius: 12px;
+}
+
+/* Invert the colors for the text inside the CTA */
+.project-cta h3,
+.project-cta p {
+    color: var(--card-bg-color);
+}
+
+.project-cta .btn {
+    background-color: var(--card-bg-color);
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.project-cta .btn:hover {
+    background-color: var(--gold-accent);
+    color: var(--primary-color);
 }
 
 /* All grids will be a single column on mobile by default */
@@ -576,7 +605,10 @@ section {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+.project-card h3 {
+    color: var(--gold-accent); /* Changed project card headings to gold */
+    text-transform: uppercase; /* Add this line */
+}
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -620,7 +652,17 @@ section {
 .repo-link {
     font-weight: 600;
 }
+.project-cta {
+    margin-top: 4rem; /* Adds space above the CTA */
+    padding: 2rem;
+    background-color: var(--surface-color);
+    border-radius: 12px;
+}
 
+.project-cta h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
 /* 8. Buttons & CTAs */
 .btn {
     display: inline-block;
@@ -651,6 +693,34 @@ section {
     border-top: 1px solid var(--border-color);
     color: var(--secondary-text-color);
 }
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer-links a {
+    color: var(--secondary-text-color);
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-color);
+}
+
+.footer-links .icon-svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill: currentColor;
+}
+
 
 /* ======================== */
 /* 10. Media Queries for Desktop */
@@ -687,19 +757,6 @@ section {
     h1 { font-size: 3.5rem; }
     h2 { font-size: 2.2rem; }
     
-    .hero {
-        padding: 2rem 0 0;
-    }
-
-    .hero-content {
-        flex-direction: row;
-        justify-content: space-between;
-        text-align: left;
-    }
-
-    .hero-text-container {
-        max-width: 50%;
-    }
     
     section {
         padding: 4rem 0;
@@ -726,6 +783,35 @@ section {
     .philosophy-grid {
         grid-template-columns: repeat(3, 1fr); /* Creates a 3-column layout on desktop */
     }
+    /* Add this inside your @media (min-width: 768px) block */
+
+.hero {
+    padding: 4rem 2rem;
+}
+
+.hero-content {
+    /* The magic for the split-screen layout */
+    grid-template-columns: repeat(2, 1fr);
+    text-align: left;
+}
+
+.hero-text-container {
+    text-align: left; /* Align text to the left on desktop */
+}
+
+.hero-headline {
+    font-size: 3.2rem;
+}
+
+.hero-subtitle {
+    margin-left: 0; /* Reset mobile centering */
+    margin-right: 0;
+}
+
+.hero-cta {
+    flex-direction: row; /* Place buttons side-by-side */
+    justify-content: flex-start;
+}
 }
 
 /* ======================== */
@@ -740,11 +826,7 @@ section {
         text-align: center;
     }
     
-    .hero-content {
-        flex-direction: column; /* Stack hero content vertically */
-        align-items: center;
-        text-align: center;
-    }
+    
     .hero-text-container {
         /*
         * This ensures the text container takes up the full width,
@@ -808,4 +890,10 @@ section {
 
 #scrollToTopBtn:hover {
     background-color: var(--gold-accent);
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
 }
