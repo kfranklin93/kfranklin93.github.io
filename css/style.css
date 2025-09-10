@@ -336,6 +336,7 @@ a:hover {
     margin: 0 auto;
     padding: 2rem 0;
 }
+
 .summary-section h2, 
 .competencies-section h2, 
 .certifications-section h2 {
@@ -349,14 +350,9 @@ a:hover {
     width: fit-content;
 }
 
-.summary-section h2, .competencies-section h2 {
-    text-align: center;
-}
-
 .competencies-section {
     padding: 2rem 0;
 }
-
 .skills-list {
     display: flex;
     flex-wrap: wrap;
@@ -382,12 +378,7 @@ a:hover {
     background-color: var(--accent-color);
     color: var(--card-bg-color);
 }
-.summary-section h2 {
-    display: block;
-    margin: 0 auto;
-    width: fit-content;
-    text-align: center;
-}
+
 /* ======================== */
 /* 6. Main Sections & Cards */
 /* ======================== */
@@ -401,7 +392,7 @@ section {
 }
 
 .experience-section h2, .certifications-section h2, .project-section h2, .resume-section h2 {
-    text-align: left;
+    text-align: center;
     scroll-margin-top: 6rem;
 }
 
