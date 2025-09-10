@@ -512,6 +512,7 @@ section {
 .card-details.expanded {
     max-height: 500px;
     padding: 20px;
+    overflow-y: auto; /* Adds a vertical scrollbar if content overflows */
 }
 
 .card-details li {
