@@ -6,10 +6,11 @@
     --surface-color: #F9F9F9;
     --card-bg-color: #FFFFFF;
     --primary-color: #111111;
-    --accent-color: #FF5A5F; /* A vibrant, modern red */
+    --accent-color: #1F8A70; /* New green accent color */
+    --gold-accent: #B2943B; /* Gold accent for highlights */
     --secondary-text-color: #666666;
     --border-color: #E0E0E0;
-    --glow-color: rgba(255, 90, 95, 0.4);
+    --glow-color: rgba(31, 138, 112, 0.4); /* Green glow */
 
     --font-main: 'Poppins', sans-serif;
     --font-mono: 'Roboto Mono', monospace;
@@ -38,7 +39,7 @@ body {
 .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 1rem; /* Mobile-first padding */
+    padding: 0 1rem;
 }
 
 /* ======================== */
@@ -57,6 +58,7 @@ h2 {
     display: inline-block;
     padding-bottom: 0.5rem;
     margin-bottom: 2rem;
+    text-shadow: 0 0 5px var(--glow-color); /* Subtle glow effect */
 }
 h3 { font-size: 1.5rem; }
 
@@ -66,7 +68,7 @@ p {
 }
 
 a {
-    color: var(--accent-color);
+    color: var(--gold-accent); /* Changed link color to gold */
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -168,8 +170,20 @@ a:hover {
 /* ======================== */
 .hero {
     text-align: center;
-    padding: 4rem 0; /* Adjusted for mobile */
     background-color: var(--surface-color);
+    padding: 4rem 0 0; /* Adjust padding to make room for the card */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 2rem; /* Add space at the bottom */
 }
 
 .hero h1, .hero-subtitle {
@@ -192,6 +206,174 @@ a:hover {
 }
 
 /* ======================== */
+/* 5.1. Contact Card Styling */
+/* ======================== */
+.contact-card {
+    background-color: var(--card-bg-color);
+    padding: 3rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease-in-out;
+    margin-top: -3rem; /* Lift the card to overlap the hero section */
+    position: relative;
+    z-index: 10;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-photo-container {
+    width: 6rem;
+    height: 6rem;
+    background-color: var(--surface-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 4px solid var(--card-bg-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-photo-svg {
+    width: 4rem;
+    height: 4rem;
+    color: var(--secondary-text-color);
+}
+
+.contact-card h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--primary-color);
+}
+
+.card-subtitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--secondary-text-color);
+}
+
+.contact-info-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--surface-color);
+    border-radius: 50%;
+    color: var(--secondary-text-color);
+    transition: background-color 0.3s ease;
+}
+
+.icon-link:hover {
+    background-color: var(--border-color);
+}
+
+.icon-svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+}
+
+.contact-info-item a {
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    transition: text-decoration 0.3s ease;
+}
+
+.contact-info-item a:hover {
+    text-decoration: underline;
+}
+
+.cta-section {
+    margin-top: 2rem;
+}
+
+.cta-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.cta-section p {
+    margin-top: 0.5rem;
+    color: var(--secondary-text-color);
+}
+
+/* ======================== */
+/* 5.2. Summary & Competencies Section */
+/* ======================== */
+.summary-section {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+.summary-section h2, .competencies-section h2 {
+    text-align: center;
+}
+
+.competencies-section {
+    padding: 2rem 0;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.skills-list span {
+    font-family: var(--font-mono);
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--secondary-text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.skills-list span:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--accent-color);
+    color: var(--card-bg-color);
+}
+.summary-section h2 {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+    text-align: center;
+}
+/* ======================== */
 /* 6. Main Sections & Cards */
 /* ======================== */
 main {
@@ -199,16 +381,13 @@ main {
 }
 
 section {
-    padding: 2rem 0; /* Adjusted for mobile */
+    padding: 2rem 0;
     text-align: center;
-}
-/* Adjustments to ensure headers are visible below the fixed navbar */
-section h2 {
-    scroll-margin-top: 6rem; /* Add space equal to the navbar's height */
 }
 
 .experience-section h2, .certifications-section h2, .project-section h2, .resume-section h2 {
     text-align: left;
+    scroll-margin-top: 6rem;
 }
 
 .card {
@@ -230,7 +409,7 @@ section h2 {
     display: grid;
     gap: 2rem;
     margin-top: 2rem;
-    grid-template-columns: 1fr; /* Single column layout for mobile */
+    grid-template-columns: 1fr;
     align-items: stretch;
 }
 
@@ -316,7 +495,7 @@ section h2 {
 
 .card-details li::before {
     content: '•';
-    color: var(--accent-color);
+    color: var(--accent-color); /* Changed bullet points to green */
     font-size: 1.2em;
     position: absolute;
     left: 0;
@@ -341,7 +520,7 @@ section h2 {
 }
 
 .project-card h3 {
-    color: var(--primary-color);
+    color: var(--gold-accent); /* Changed project card headings to gold */
 }
 
 .tech-tags {
@@ -383,7 +562,7 @@ section h2 {
 .btn {
     display: inline-block;
     background-color: var(--accent-color);
-    color: var(--primary-color);
+    color: var(--card-bg-color);
     padding: 0.8rem 1.6rem;
     border-radius: 5px;
     font-weight: 600;
@@ -391,7 +570,7 @@ section h2 {
 }
 
 .btn:hover {
-    background-color: #FF787D;
+    background-color: var(--gold-accent); /* Changed button hover to gold */
     transform: translateY(-2px);
     box-shadow: 0 0 10px var(--glow-color);
 }
@@ -415,11 +594,11 @@ section h2 {
 /* ======================== */
 @media (min-width: 768px) {
     .container {
-        padding: 0 2rem; /* Restores original padding for larger screens */
+        padding: 0 2rem;
     }
     
     .navbar .container {
-        flex-direction: row; /* Resets navigation to a horizontal row */
+        flex-direction: row;
         justify-content: space-between;
     }
 
@@ -428,7 +607,7 @@ section h2 {
     }
 
     .nav-links {
-        display: flex !important; /* Forces nav-links to show on desktop */
+        display: flex !important;
         position: static;
         flex-direction: row;
         transform: none;
@@ -439,14 +618,24 @@ section h2 {
     }
     
     .hamburger-btn {
-        display: none !important; /* Hides hamburger on desktop */
+        display: none !important;
     }
 
     h1 { font-size: 3.5rem; }
     h2 { font-size: 2.2rem; }
     
     .hero {
-        padding: 6rem 0;
+        padding: 6rem 0 0;
+    }
+
+    .hero-content {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    .hero-text-container {
+        max-width: 50%;
     }
     
     section {
@@ -469,5 +658,53 @@ section h2 {
     
     .project-grid {
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+/* ======================== */
+/* 11. Mobile-specific Styles (below 768px) */
+/* ======================== */
+@media (max-width: 767px) {
+    /* Adjust Hero Section for smaller screens */
+    .hero {
+        padding-bottom: 2rem; /* Add padding at the bottom for separation */
+    }
+    
+    .hero-content {
+        flex-direction: column; /* Stack hero content vertically */
+    }
+
+    /* Fix the contact card overlap by resetting the negative margin */
+    .contact-card {
+        margin-top: 0; 
+        padding: 2rem 1rem; /* Smaller padding to fit on screen */
+        border-radius: 0; /* Optional: remove rounded corners for a full-width look */
+    }
+
+    .contact-info-grid {
+        grid-template-columns: 1fr; /* Stack contact items vertically */
+        gap: 1rem; /* Reduce gap between items */
+    }
+
+    .contact-photo-container {
+        width: 4.5rem; /* Smaller profile photo */
+        height: 4.5rem;
+    }
+
+    .contact-photo-svg {
+        width: 3rem; /* Smaller SVG inside the photo container */
+        height: 3rem;
+    }
+
+    .contact-card h1 {
+        font-size: 1.5rem; /* Smaller heading */
+    }
+    
+    .card-subtitle {
+        font-size: 1rem; /* Smaller subheading */
+    }
+
+    .cta-section {
+        padding-top: 1rem; /* Reduce top padding */
     }
 }
