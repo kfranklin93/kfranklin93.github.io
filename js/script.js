@@ -86,6 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.toggle('expanded');
             button.classList.toggle('expanded');
             details.classList.toggle('expanded');
+             // NEW: Conditionally add a class to the header for the divider
+             if (details.classList.contains('expanded')) {
+                header.classList.add('has-divider');
+            } else {
+                header.classList.remove('has-divider');
+            }
         });
     });
 });

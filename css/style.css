@@ -86,7 +86,7 @@ a:hover {
     padding: 1rem;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 11; /* Set a high z-index to keep it on top of other content */
 }
 
 .navbar .container {
@@ -218,6 +218,9 @@ a:hover {
     margin-top: -3rem; /* Lift the card to overlap the hero section */
     position: relative;
     z-index: 10;
+    max-width: 550px; /* Limits the max width of the card */
+    margin-left: auto; /* Centers the card on the page */
+    margin-right: auto; /* Centers the card on the page */
 }
 
 .contact-card:hover {
@@ -416,6 +419,30 @@ section {
 /* ======================== */
 /* 7. Interactive Components */
 /* ======================== */
+
+/* Experience Cards */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* This is the new rule that makes the divider conditional */
+.card-header.has-divider {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-header:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.card-header.expanded {
+    background-color: var(--surface-color);
+    border-bottom: 1px solid transparent;
+}
 
 /* Experience Cards */
 .card-header {
@@ -672,8 +699,17 @@ section {
     
     .hero-content {
         flex-direction: column; /* Stack hero content vertically */
+        align-items: center;
+        text-align: center;
     }
-
+    .hero-text-container {
+        /*
+        * This ensures the text container takes up the full width,
+        * allowing the text to center properly.
+        */
+        width: 100%;
+        max-width: none;
+    }
     /* Fix the contact card overlap by resetting the negative margin */
     .contact-card {
         margin-top: 0; 
