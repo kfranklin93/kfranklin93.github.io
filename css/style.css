@@ -315,6 +315,13 @@ a:hover {
 .cta-section {
     margin-top: 2rem;
 }
+/* V V V PASTE THE NEW CODE HERE V V V */
+#scrollToTopBtn {
+    padding: 12px;
+    font-size: 16px;
+    right: 20px;
+    bottom: 20px;
+}
 
 .cta-section h2 {
     font-size: 1.5rem;
@@ -360,6 +367,7 @@ a:hover {
     justify-content: center;
     gap: 10px;
     margin-top: 1rem;
+    
 }
 
 .skills-list span {
@@ -751,4 +759,26 @@ section {
     .cta-section {
         padding-top: 1rem; /* Reduce top padding */
     }
+}
+/* ======================== */
+/* 12. Scroll to Top Button */
+/* ======================== */
+#scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: var(--accent-color);
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+#scrollToTopBtn:hover {
+    background-color: var(--gold-accent);
 }

@@ -67,26 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Call the function to populate the projects
-    fetchGitHubProjects();
-});
+    if (projectGrid) {
+        fetchGitHubProjects();
+    }
 
-// Code for expandable experience cards
-document.addEventListener('DOMContentLoaded', () => {
-    // Select all the card headers
+    // Code for expandable experience cards
     const cardHeaders = document.querySelectorAll('.card-header');
 
-    // Loop through each header and add a click event listener
     cardHeaders.forEach(header => {
         header.addEventListener('click', () => {
-            // Find the button and the details list within that header's parent card
             const button = header.querySelector('.expand-btn');
-            const details = header.nextElementSibling; // The ul.card-details is the next sibling
+            const details = header.nextElementSibling;
             
-            // Toggle the 'expanded' class on both the header and the details list
             header.classList.toggle('expanded');
             button.classList.toggle('expanded');
             details.classList.toggle('expanded');
-             // NEW: Conditionally add a class to the header for the divider
+
              if (details.classList.contains('expanded')) {
                 header.classList.add('has-divider');
             } else {
@@ -94,24 +90,46 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
-document.addEventListener('DOMContentLoaded', () => {
+
     // Hamburger menu toggle
     const hamburgerBtn = document.querySelector('.hamburger-btn');
     const navLinks = document.querySelector('.nav-links');
 
-    hamburgerBtn.addEventListener('click', () => {
-        hamburgerBtn.classList.toggle('is-active');
-        navLinks.classList.toggle('is-active');
-    });
-
-    // Close menu when a link is clicked
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (navLinks.classList.contains('is-active')) {
-                hamburgerBtn.classList.remove('is-active');
-                navLinks.classList.remove('is-active');
-            }
+    if (hamburgerBtn && navLinks) {
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('is-active');
+            navLinks.classList.toggle('is-active');
         });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('is-active')) {
+                    hamburgerBtn.classList.remove('is-active');
+                    navLinks.classList.remove('is-active');
+                }
+            });
+        });
+    }
+
+    // Scroll to Top Button
+    const scrollToTopBtn = document.createElement('button');
+    scrollToTopBtn.innerHTML = '↑';
+    scrollToTopBtn.id = 'scrollToTopBtn';
+    scrollToTopBtn.title = 'Go to top';
+    document.body.appendChild(scrollToTopBtn);
+
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    }
+
+    scrollToTopBtn.addEventListener('click', () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     });
 });
