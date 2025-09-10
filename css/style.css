@@ -2,22 +2,24 @@
 /* 1. CSS Variables for Theme Colors */
 /* ======================== */
 :root {
-    --bg-color: #ffffffc1;
-    --surface-color: #f9f9f9ca;
-    --card-bg-color: #FFFFFF;
-    --primary-color: #111111;
-    
-    /* --- Bolder Accent Colors --- */
-    --accent-color: #007e39;       /* A rich, modern jungle green */
-    --gold-accent: #F2C94C;        /* Bright gold */
-    
-    --secondary-text-color: #4e4d4d;
-    --border-color: #E0E0E0;
-    
-    /* --- Updated Glow Colors --- */
-    --glow-color: rgba(22, 160, 133, 0.4); /* Matching green glow */
-    --gold-glow-color: rgba(242, 201, 76, 0.5); /* Gold glow updated to match */
+    /* --- Shiny Leather Theme Palette --- */
+    --bg-color: #1a1a1a; /* Dark leather base */
+    --surface-color: #242424; /* Lighter, raised surface color */
+    --primary-color: #eaeaeada;
+    --secondary-text-color: #A0A0A0;
+    --card-bg-color: #1E1E1E; /* Cards will match the section background */
+    --border-color: rgba(242, 200, 76, 0.368); /* A faint gold for borders */
 
+    /* --- Accent Colors (No Change) --- */
+    --accent-color: #16a085;   /* Jungle Green */
+    --gold-accent: #f2c84ce5;    /* Bright Gold */
+    
+    /* --- Glow Colors (Updated for Dark BG) --- */
+    --glow-color: rgba(57, 137, 96, 0.589);
+    --gold-glow-color: rgba(240, 206, 103, 0.518);
+
+    /* --- Typography --- */
+    --font-headings: 'Playfair Display', serif; /* New luxury font for headings */
     --font-main: 'Poppins', sans-serif;
     --font-mono: 'Roboto Mono', monospace;
 }
@@ -38,6 +40,12 @@ html {
 body {
     font-family: var(--font-main);
     background-color: var(--bg-color);
+    /* This creates a subtle, leather-like texture */
+    background-image: 
+        linear-gradient(45deg, rgba(0,0,0,0.05) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.05) 75%),
+        linear-gradient(45deg, rgba(0,0,0,0.05) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.05) 75%);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
     color: var(--primary-color);
     line-height: 1.6;
 }
@@ -51,22 +59,26 @@ body {
 /* ======================== */
 /* 3. Typography & Links */
 /* ======================== */
-h1, h2, h3 {
-    line-height: 1.2;
-    margin-bottom: 1rem;
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headings);
     color: var(--primary-color);
+    font-weight: 700;
     text-shadow: 0 0 6px var(--glow-color); /* Subtle glow effect */
 }
 
-h1 { font-size: 2.5rem;
-    text-shadow: 0 0 6px var(--glow-color); /* Subtle glow effect */ }
+h1 { font-size: 3.5rem; line-height: 1.2; }
 h2 {
-    font-size: 2rem;
-    border-bottom: 2px solid var(--accent-color);
-    display: inline-block;
+    font-size: 2.5rem;
+    border: none; /* Remove the old underline */
     padding-bottom: 0.5rem;
     margin-bottom: 2rem;
-    text-shadow: 0 0 5px var(--glow-color); /* Subtle glow effect */
+    /* This gives the text a shiny, metallic look */
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: var(--gold-gradient);
+    background-clip: text;
+    text-shadow: 0 0 6px var(--glow-color); /* Subtle glow effect */
+   
 }
 h3 { font-size: 1.5rem; }
 
@@ -76,7 +88,7 @@ p {
 }
 
 a {
-    color: var(--gold-accent); /* Changed link color to gold */
+    color: var(--gold-accent);
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -417,19 +429,32 @@ section {
     scroll-margin-top: 6rem;
 }
 
-.card {
-    background-color: var(--card-bg-color);
-    border: 1px solid var(--border-color);
+.card, .philosophy-card {
+    background-color: var(--surface-color);
+    border: 2px solid;
+    border-image-slice: 1;
+    border-image-source: var(--gold-gradient);
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    padding: 2rem; /* Add padding for content */
+    transition: border-color 0.3s ease;
 }
 
-.card:hover {
+.card:hover, .philosophy-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--gold-accent); /* Border becomes solid gold on hover */
 }
+/* .card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color); 
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: none;
+    transition: border-color 0.3s ease;
+} */
+
+
 /* Add background colors to create visual rhythm */
 #summary,
 #experience,
@@ -457,12 +482,12 @@ section {
 /* Invert the colors for the text inside the CTA */
 .project-cta h3,
 .project-cta p {
-    color: var(--card-bg-color);
+    color: var(--accent-color);
 }
 
 .project-cta .btn {
     background-color: var(--card-bg-color);
-    color: var(--accent-color);
+    color: var(--gold-accent);
     font-weight: 600;
 }
 
@@ -545,7 +570,7 @@ section {
     left: 50%;
     width: 20px;
     height: 2px;
-    background-color: var(--primary-color);
+    background-color: var(--accent-color);
     transition: transform 0.3s ease;
 }
 
@@ -602,16 +627,17 @@ section {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.3s ease, transform 0.3s ease;
 }
 .project-card h3 {
+    font-family: var(--font-main); /* Use sans-serif for project titles for clarity */
     color: var(--gold-accent); /* Changed project card headings to gold */
     text-transform: uppercase; /* Add this line */
 }
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 25px hsla(0, 0%, 100%, 0.15);
+    border-color: var(--gold-accent);
 }
 
 .project-card h3 {
@@ -666,18 +692,19 @@ section {
 /* 8. Buttons & CTAs */
 .btn {
     display: inline-block;
-    background-color: var(--accent-color);
-    color: var(--card-bg-color);
+    background: var(--green-gradient);
+    color: #FFFFFF;
     padding: 0.8rem 1.6rem;
+    border: none;
     border-radius: 5px;
     font-weight: 600;
+    font-family: var(--font-main);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 2px 2px rgba(255, 255, 255, 0.285);
     transition: all 0.3s ease;
 }
-
 .btn:hover {
-    background-color: var(--gold-accent); /* Changed button hover to gold */
-    transform: translateY(-2px);
-    box-shadow: 0 0 10px var(--glow-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 2px 2px rgba(255,255,255,0.2);
 }
 
 .resume-section {
