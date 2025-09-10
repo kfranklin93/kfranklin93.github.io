@@ -3,7 +3,7 @@
 /* ======================== */
 :root {
     --bg-color: #FFFFFF;
-    --surface-color: #F9F9F9;
+    --surface-color: #f9f9f9ca;
     --card-bg-color: #FFFFFF;
     --primary-color: #111111;
     --accent-color: #1F8A70; /* New green accent color */
@@ -11,6 +11,7 @@
     --secondary-text-color: #666666;
     --border-color: #E0E0E0;
     --glow-color: rgba(31, 138, 112, 0.4); /* Green glow */
+    --gold-glow-color: rgba(255, 201, 5, 0.869); /* Gold glow */
 
     --font-main: 'Poppins', sans-serif;
     --font-mono: 'Roboto Mono', monospace;
@@ -51,7 +52,8 @@ h1, h2, h3 {
     color: var(--primary-color);
 }
 
-h1 { font-size: 2.5rem; }
+h1 { font-size: 2.5rem;
+    text-shadow: 0 0 6px var(--glow-color); /* Subtle glow effect */ }
 h2 {
     font-size: 2rem;
     border-bottom: 2px solid var(--accent-color);
@@ -169,36 +171,39 @@ a:hover {
 /* 5. Hero Section */
 /* ======================== */
 .hero {
-    text-align: center;
     background-color: var(--surface-color);
-    padding: 4rem 0 0; /* Adjust padding to make room for the card */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
+    padding: 4rem 1rem;
+    text-align: center;
 }
 
 .hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    padding-bottom: 2rem; /* Add space at the bottom */
+    gap: 2.5rem; /* Creates space between the text and the card */
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
-.hero h1, .hero-subtitle {
+.hero-text-container {
+    max-width: 800px; /* Keeps headline readable */
     opacity: 0;
-    animation: fadeIn 1s forwards;
+    animation: fadeIn 1s 0.2s forwards;
 }
 
 .hero h1 {
-    animation-delay: 0.2s;
+    font-size: 2.6rem;
+    line-height: 1.3;
+    text-shadow: 0 0 5px var(--glow-color);
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--secondary-text-color);
-    animation-delay: 0.5s;
+    max-width: 650px;
+    margin: 1rem auto 0;
+    opacity: 0;
+    animation: fadeIn 1s 0.5s forwards;
 }
 
 @keyframes fadeIn {
@@ -210,17 +215,18 @@ a:hover {
 /* ======================== */
 .contact-card {
     background-color: var(--card-bg-color);
-    padding: 3rem;
+    padding: 2.5rem;
     border-radius: 1rem;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease-in-out;
-    margin-top: -3rem; /* Lift the card to overlap the hero section */
     position: relative;
     z-index: 10;
-    max-width: 550px; /* Limits the max width of the card */
-    margin-left: auto; /* Centers the card on the page */
-    margin-right: auto; /* Centers the card on the page */
+    max-width: 800px; /* Match the text container for perfect alignment */
+    width: 100%;
+    margin-top: 0; /* Remove the overlap */
+    opacity: 0;
+    animation: fadeIn 1s 0.8s forwards; /* Fade in the card last */
 }
 
 .contact-card:hover {
@@ -313,7 +319,9 @@ a:hover {
 }
 
 .cta-section {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border-color);
 }
 /* V V V PASTE THE NEW CODE HERE V V V */
 #scrollToTopBtn {
@@ -338,55 +346,70 @@ a:hover {
 /* 5.2. Summary & Competencies Section */
 /* ======================== */
 .summary-section {
-    text-align: left;
+    padding: 4rem 0; /* Add more vertical spacing */
+    text-align: center; /* Center the whole section */
+}
+
+.summary-intro {
     max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
+    margin: 0 auto 3rem; /* Center the intro text and add space below it */
 }
 
-.summary-section h2, 
-.competencies-section h2, 
-.certifications-section h2 {
-    text-align: center;
-    justify-content: center;
-}
-
-.summary-section h2,
-.certifications-section h2 {
-    display: block;
-    margin: 0 auto;
-    width: fit-content;
-}
-
-.competencies-section {
-    padding: 2rem 0;
-}
-.skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 1rem;
-    
-}
-
-.skills-list span {
-    font-family: var(--font-mono);
-    background-color: var(--card-bg-color);
-    border: 1px solid var(--border-color);
+.summary-intro p {
+    font-size: 1.1rem; /* Slightly larger text for better readability */
+    line-height: 1.7;
     color: var(--secondary-text-color);
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
 }
 
-.skills-list span:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: var(--accent-color);
-    color: var(--card-bg-color);
+.philosophy-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to a single column on mobile */
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto; /* Center the grid */
+    text-align: left; /* Align text to the left within the cards */
 }
+
+.philosophy-card {
+    background-color: var(--card-bg-color);
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.philosophy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.philosophy-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--surface-color);
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+}
+
+.philosophy-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--accent-color);
+}
+
+.philosophy-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.philosophy-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
 
 /* ======================== */
 /* 6. Main Sections & Cards */
@@ -665,7 +688,7 @@ section {
     h2 { font-size: 2.2rem; }
     
     .hero {
-        padding: 6rem 0 0;
+        padding: 2rem 0 0;
     }
 
     .hero-content {
@@ -698,6 +721,10 @@ section {
     
     .project-grid {
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+   
+    .philosophy-grid {
+        grid-template-columns: repeat(3, 1fr); /* Creates a 3-column layout on desktop */
     }
 }
 
