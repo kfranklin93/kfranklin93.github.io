@@ -341,6 +341,7 @@ a:hover {
 .competencies-section h2, 
 .certifications-section h2 {
     text-align: center;
+    justify-content: center;
 }
 
 .summary-section h2,
@@ -699,6 +700,9 @@ section {
     /* Adjust Hero Section for smaller screens */
     .hero {
         padding-bottom: 2rem; /* Add padding at the bottom for separation */
+    }
+    .certifications-section h2 {
+        text-align: center;
     }
     
     .hero-content {
