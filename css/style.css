@@ -336,6 +336,18 @@ a:hover {
     margin: 0 auto;
     padding: 2rem 0;
 }
+.summary-section h2, 
+.competencies-section h2, 
+.certifications-section h2 {
+    text-align: center;
+}
+
+.summary-section h2,
+.certifications-section h2 {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+}
 
 .summary-section h2, .competencies-section h2 {
     text-align: center;
