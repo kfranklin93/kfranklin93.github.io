@@ -467,7 +467,8 @@ section {
 /* Make "About Me" and "Projects" stand out */
 .about-section,
 .project-section {
-    background-color: var(--surface-color);
+    color: var(--gold-accent);
+    background-color: var(--card-bg-color);
 }
 
 /* Add a high-impact, full-width color block for the CTA */

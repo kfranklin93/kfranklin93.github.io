@@ -2,8 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Your GitHub username, now correctly written as a string
     const username = 'kfranklin93'; 
 
-    // The container where projects will be displayed
-    const projectGrid = document.querySelector('.project-grid');
+    const projectGrid = document.querySelector('#github-projects-grid');
 
     // Function to fetch and display GitHub projects
     async function fetchGitHubProjects() {
@@ -17,8 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const repos = await response.json();
 
-            // Clear any existing content
-            projectGrid.innerHTML = ''; 
 
             // Loop through each repository
             repos.forEach(repo => {
