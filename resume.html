@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KENAN FRANKLIN - Resume</title>
+    <link rel="stylesheet" href="css/resume.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @media screen {
+            .print-controls {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                display: flex;
+                gap: 10px;
+                z-index: 1000;
+            }
+            .print-btn {
+                font-family: 'Space Grotesk', monospace;
+                background: #FF3B30;
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                font-size: 0.9rem;
+                font-weight: 600;
+                cursor: pointer;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                transition: all 0.3s ease;
+            }
+            .print-btn:hover {
+                background: #000;
+            }
+            .print-btn.secondary {
+                background: #000;
+            }
+            .print-btn.secondary:hover {
+                background: #FF3B30;
+            }
+        }
+        @media print {
+            .print-controls {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PRINT CONTROLS -->
+    <div class="print-controls">
+        <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+        <button class="print-btn secondary" onclick="window.location.href='index.html'">← Back to Portfolio</button>
+    </div>
+    
+    <div class="resume-container">
+        <!-- HEADER -->
+        <header class="resume-header">
+            <div class="name-block">
+                <h1 class="resume-name">KENAN<br>FRANKLIN</h1>
+                <div class="tagline">SENIOR SOFTWARE DEVELOPMENT ENGINEER</div>
+            </div>
+            <div class="contact-block">
+                <div class="contact-item">Atlanta, GA</div>
+                <div class="contact-item">kfranklin93@gmail.com</div>
+                <div class="contact-item">kfranklin93.github.io</div>
+                <div class="contact-item">github.com/kfranklin93</div>
+            </div>
+        </header>
+
+        <!-- MANIFESTO / SUMMARY -->
+        <section class="resume-section manifesto">
+            <div class="section-label">MANIFESTO</div>
+            <p class="manifesto-text">
+                <strong>10 years</strong> architecting mission-critical enterprise applications. 
+                <strong>CompTIA Security+ Certified</strong> with specialized focus on system reliability, 
+                secure cloud infrastructure, and <strong>Federal Section 508 compliance</strong>. 
+                Proven track record leading high-stakes technical initiatives for the 
+                <strong>Department of Homeland Security (USCIS)</strong> and <strong>Capital One</strong>, 
+                transitioning legacy systems into high-performance, secure, and accessible cloud-native architectures.
+            </p>
+        </section>
+
+        <!-- CORE COMPETENCIES -->
+        <section class="resume-section competencies">
+            <div class="section-label">ARSENAL</div>
+            <div class="competencies-grid">
+                <div class="comp-category">
+                    <div class="comp-label">FRONTEND</div>
+                    <div class="comp-items">React (Context/Hooks) • TypeScript • JavaScript (ES6+) • Angular</div>
+                </div>
+                <div class="comp-category">
+                    <div class="comp-label">BACKEND</div>
+                    <div class="comp-items">Ruby on Rails • Node.js • RESTful APIs • Microservices</div>
+                </div>
+                <div class="comp-category">
+                    <div class="comp-label">CLOUD & DEVOPS</div>
+                    <div class="comp-items">AWS (EC2, S3, CloudWatch) • Docker • CI/CD • ActiveMQ</div>
+                </div>
+                <div class="comp-category">
+                    <div class="comp-label">SECURITY & COMPLIANCE</div>
+                    <div class="comp-items">CompTIA Security+ • RBAC • 508 Compliance • DHS Standards</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="resume-section experience">
+            <div class="section-label">TRACK RECORD</div>
+            
+            <div class="job-entry">
+                <div class="job-header">
+                    <div class="job-title-block">
+                        <h3 class="job-title">SENIOR SOFTWARE DEVELOPER</h3>
+                        <div class="job-company">U.S. Citizenship and Immigration Services (USCIS), IBM</div>
+                    </div>
+                    <div class="job-date">Sep 2024 - Present</div>
+                </div>
+                <ul class="job-achievements">
+                    <li><strong>Secure System Architecture:</strong> Engineered a Unified Prioritization Engine using type-driven React architecture and Security+ principles; implemented Role-Based Access Control (RBAC) to secure sensitive API endpoints, protect SPII data, and reduced technical debt by 30%.</li>
+                    <li><strong>Federal Compliance Leadership:</strong> Directed 508-compliance for DHS enterprise apps, dedicating 39% of technical velocity (56+ Jira stories) to accessibility remediation, ensuring 100% adherence to federal audit standards.</li>
+                    <li><strong>Performance Engineering:</strong> Refactored System Alerting logic to eliminate high-overhead polling, utilizing React Context to ensure cross-browser reliability and sub-second UI responsiveness.</li>
+                    <li><strong>CI/CD Reliability:</strong> Stabilized automated testing suites by remediating complex UTC/EST timezone discrepancies and implementing asynchronous polling in Jest, maintaining high CI/CD pass rates.</li>
+                    <li><strong>Technical Governance:</strong> Authored "Developer Handoff" guides and conducted UX Desk Checks for FCO Auto-Assignment features, streamlining cross-team collaboration for 50+ engineers.</li>
+                </ul>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <div class="job-title-block">
+                        <h3 class="job-title">WEB DEVELOPER / DESIGNER</h3>
+                        <div class="job-company">Octo, an IBM Company</div>
+                    </div>
+                    <div class="job-date">Jul 2023 - Aug 2024</div>
+                </div>
+                <ul class="job-achievements">
+                    <li><strong>Platform Modernization:</strong> Partnered with IBM leadership to revamp developer documentation and onboarding for federal web platforms, emphasizing "Clean Code" standards and modular architecture.</li>
+                    <li><strong>Design System Implementation:</strong> Developed reusable component libraries to ensure visual and functional consistency across multi-agency platforms.</li>
+                </ul>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <div class="job-title-block">
+                        <h3 class="job-title">SENIOR UI ENGINEER</h3>
+                        <div class="job-company">Verizon Connect</div>
+                    </div>
+                    <div class="job-date">Jan 2020 - Jul 2022</div>
+                </div>
+                <ul class="job-achievements">
+                    <li><strong>Enterprise Data Visualization:</strong> Architected Angular 8 interfaces for high-throughput fleet diagnostics, managing real-time data streams for device-tracking platform.</li>
+                    <li><strong>Mentorship:</strong> Led junior engineers in adopting modern React/TypeScript patterns, increasing sprint velocity and improving codebase maintainability.</li>
+                </ul>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <div class="job-title-block">
+                        <h3 class="job-title">UX & UI COURSE INSTRUCTOR</h3>
+                        <div class="job-company">Georgia Tech</div>
+                    </div>
+                    <div class="job-date">Mar 2021 - Dec 2022</div>
+                </div>
+                <ul class="job-achievements">
+                    <li><strong>Technical Leadership:</strong> Translated complex architectural concepts—HTML5/CSS3, JavaScript, and UX strategy—into actionable curriculum for 100+ professional-track students.</li>
+                </ul>
+            </div>
+
+            <div class="job-entry">
+                <div class="job-header">
+                    <div class="job-title-block">
+                        <h3 class="job-title">STAFF SOFTWARE ENGINEER</h3>
+                        <div class="job-company">Capital One</div>
+                    </div>
+                    <div class="job-date">Oct 2017 - Nov 2019</div>
+                </div>
+                <ul class="job-achievements">
+                    <li><strong>Message-Oriented Middleware:</strong> Utilized ActiveMQ to manage asynchronous data processing and message queuing for customer document management systems, ensuring high-availability and fault tolerance.</li>
+                    <li><strong>Enterprise Cloud Migration:</strong> Facilitated massive enterprise data migration from on-premise infrastructure to AWS, ensuring zero-downtime and data integrity for millions of customer records.</li>
+                    <li><strong>Frontend Engineering:</strong> Engineered Angular 5 interfaces focused on enhancing high-traffic consumer document experiences.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- EDUCATION & CERTIFICATIONS -->
+        <section class="resume-section credentials">
+            <div class="credentials-grid">
+                <div class="credential-block">
+                    <div class="section-label">EDUCATION</div>
+                    <div class="credential-item">
+                        <div class="credential-title">Bachelor of Arts</div>
+                        <div class="credential-detail">Digital Communication and Media/Multimedia</div>
+                        <div class="credential-org">Atlanta Metropolitan College • 2011-2015</div>
+                    </div>
+                </div>
+                <div class="credential-block">
+                    <div class="section-label">CERTIFICATIONS</div>
+                    <div class="credential-item">
+                        <div class="credential-title">CompTIA Security+ Certified</div>
+                    </div>
+                    <div class="credential-item">
+                        <div class="credential-title">AWS Certified Developer – Associate</div>
+                    </div>
+                    <div class="credential-item">
+                        <div class="credential-title">Certified Full Stack Developer</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="resume-footer">
+            <div class="footer-statement">
+                MAKE IT SECURE. MAKE IT BEAUTIFUL. MAKE IT WORK.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
