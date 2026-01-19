@@ -1,14 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Your GitHub username, now correctly written as a string
-    const username = 'kfranklin93'; 
+// ========================
+// CAMPAIGN PORTFOLIO - Interactive Elements
+// ========================
 
+document.addEventListener('DOMContentLoaded', () => {
+    // GitHub Projects Integration
+    const username = 'kfranklin93';
     const projectGrid = document.querySelector('#github-projects-grid');
 
-    // Function to fetch and display GitHub projects
+    // Fetch and display GitHub projects
     async function fetchGitHubProjects() {
         try {
-            // API URL to get user repositories, sorted by most recently updated
-            const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
+            const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=4`);
             
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -16,117 +18,210 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const repos = await response.json();
 
-
-            // Loop through each repository
             repos.forEach(repo => {
-                // Skip forked repos if you want
-                if (repo.fork) {
-                    return;
-                }
+                // Skip forked repos
+                if (repo.fork) return;
 
-                // Create the HTML for the tech tags
-                const techTags = repo.topics.map(topic => `<span>${topic}</span>`).join('');
+                // Create tech tags
+                const techTags = repo.topics.length > 0 
+                    ? `<div class="tech-tags">${repo.topics.map(topic => `<span>${topic}</span>`).join('')}</div>`
+                    : '';
 
-                // Format the date
-                const lastUpdated = new Date(repo.pushed_at).toLocaleDateString(
-                    'en-US', 
-                    {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    }
-                );
+                // Format date
+                const lastUpdated = new Date(repo.pushed_at).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
                 
-                // Create the HTML for the project card
+                // Create card HTML
                 const cardHTML = `
-                    <div class="project-card">
-                        <h3>${repo.name}</h3>
-                        <p>${repo.description || 'No description available.'}</p>
-                        <div class="tech-tags">
-                            ${techTags}
-                        </div>
-                        <p class="project-date">Last worked on: ${lastUpdated}</p>
+                    <div class="project-card reveal">
+                        <div class="work-label">OPEN SOURCE</div>
+                        <h3>${repo.name.replace(/-/g, ' ').toUpperCase()}</h3>
+                        <p>${repo.description || 'Personal project showcasing modern development practices.'}</p>
+                        ${techTags}
+                        <p class="project-date">Last updated: ${lastUpdated}</p>
                         <div class="project-links">
-                            ${repo.homepage ? `<a href="${repo.homepage}" class="btn" target="_blank">View Live</a>` : ''}
-                            <a href="${repo.html_url}" class="repo-link" target="_blank">Public Repo ↗</a>
+                            ${repo.homepage ? `<a href="${repo.homepage}" class="btn" target="_blank">VIEW LIVE →</a>` : ''}
+                            <a href="${repo.html_url}" class="repo-link" target="_blank">CODE →</a>
                         </div>
                     </div>
                 `;
 
-                // Add the new card to the grid
                 projectGrid.insertAdjacentHTML('beforeend', cardHTML);
             });
 
+            // After loading projects, trigger reveal animations
+            observeElements();
+
         } catch (error) {
             console.error('Error fetching GitHub projects:', error);
-            projectGrid.innerHTML = '<p>Sorry, could not load projects at this time.</p>';
+            projectGrid.innerHTML = '<p style="color: var(--gray-light);">Projects loading...</p>';
         }
     }
 
-    // Call the function to populate the projects
+    // Call the function to populate projects
     if (projectGrid) {
         fetchGitHubProjects();
     }
 
-    // Code for expandable experience cards
-    const cardHeaders = document.querySelectorAll('.card-header');
+    // ========================
+    // SCROLL REVEAL ANIMATIONS
+    // ========================
+    function observeElements() {
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    // Optionally unobserve after revealing
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
 
-    cardHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const button = header.querySelector('.expand-btn');
-            const details = header.nextElementSibling;
-            
-            header.classList.toggle('expanded');
-            button.classList.toggle('expanded');
-            details.classList.toggle('expanded');
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
+        });
+    }
 
-             if (details.classList.contains('expanded')) {
-                header.classList.add('has-divider');
-            } else {
-                header.classList.remove('has-divider');
+    // Initial observation of existing reveal elements
+    observeElements();
+
+    // ========================
+    // SMOOTH SCROLL FOR ANCHOR LINKS
+    // ========================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && href !== '') {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed nav
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });
 
-    // Hamburger menu toggle
-    const hamburgerBtn = document.querySelector('.hamburger-btn');
-    const navLinks = document.querySelector('.nav-links');
+    // ========================
+    // NAVBAR SCROLL EFFECT
+    // ========================
+    const navbar = document.querySelector('.navbar');
+    let lastScroll = 0;
 
-    if (hamburgerBtn && navLinks) {
-        hamburgerBtn.addEventListener('click', () => {
-            hamburgerBtn.classList.toggle('is-active');
-            navLinks.classList.toggle('is-active');
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+
+        // Add/remove background based on scroll
+        if (currentScroll > 100) {
+            navbar.style.background = 'rgba(0, 0, 0, 0.98)';
+        } else {
+            navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+        }
+
+        lastScroll = currentScroll;
+    });
+
+    // ========================
+    // PILLAR CARDS INTERACTION
+    // ========================
+    const pillarCards = document.querySelectorAll('.pillar-card');
+    
+    pillarCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.boxShadow = '0 20px 60px rgba(255, 59, 48, 0.3)';
         });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.boxShadow = 'none';
+        });
+    });
 
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('is-active')) {
-                    hamburgerBtn.classList.remove('is-active');
-                    navLinks.classList.remove('is-active');
+    // ========================
+    // PERFORMANCE: Lazy Load Images (if any added later)
+    // ========================
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    imageObserver.unobserve(img);
                 }
             });
         });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
     }
 
-    // Scroll to Top Button
-    const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.innerHTML = '↑';
-    scrollToTopBtn.id = 'scrollToTopBtn';
-    scrollToTopBtn.title = 'Go to top';
-    document.body.appendChild(scrollToTopBtn);
+    // ========================
+    // CURSOR EFFECT (Optional - adds extra polish)
+    // ========================
+    const cursor = document.createElement('div');
+    cursor.classList.add('custom-cursor');
+    document.body.appendChild(cursor);
 
-    window.onscroll = function() {scrollFunction()};
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    const speed = 0.15;
 
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            scrollToTopBtn.style.display = "block";
-        } else {
-            scrollToTopBtn.style.display = "none";
-        }
-    }
-
-    scrollToTopBtn.addEventListener('click', () => {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     });
+
+    function animateCursor() {
+        const distX = mouseX - cursorX;
+        const distY = mouseY - cursorY;
+        
+        cursorX += distX * speed;
+        cursorY += distY * speed;
+        
+        cursor.style.left = cursorX + 'px';
+        cursor.style.top = cursorY + 'px';
+        
+        requestAnimationFrame(animateCursor);
+    }
+
+    // Only enable custom cursor on larger screens
+    if (window.innerWidth > 768) {
+        animateCursor();
+    }
+
+    // Expand cursor on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .pillar-card, .work-item');
+    
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'scale(2)';
+            cursor.style.backgroundColor = 'rgba(255, 59, 48, 0.5)';
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'scale(1)';
+            cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
+        });
+    });
+
+    // ========================
+    // CONSOLE MESSAGE (Easter Egg)
+    // ========================
+    console.log('%c👋 KENAN FRANKLIN ', 'background: #FF3B30; color: #fff; font-size: 20px; padding: 10px;');
+    console.log('%cLike what you see? Let\'s build something together.', 'font-size: 14px; color: #999;');
+    console.log('%ckfranklin93@gmail.com', 'font-size: 14px; color: #FF3B30; font-weight: bold;');
 });

@@ -1,0 +1,398 @@
+/* ======================== */
+/* CAMPAIGN-STYLE RESUME */
+/* Bold, Print-Ready, ATS-Friendly */
+/* ======================== */
+
+:root {
+    /* Campaign colors */
+    --black: #000000;
+    --white: #FFFFFF;
+    --accent: #FF3B30;
+    --gray-dark: #1a1a1a;
+    --gray-mid: #333333;
+    --gray-light: #666666;
+    
+    /* Typography */
+    --font-display: 'Bebas Neue', 'Arial Black', sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'Space Grotesk', monospace;
+}
+
+/* ======================== */
+/* GLOBAL STYLES */
+/* ======================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--white);
+    color: var(--black);
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+/* ======================== */
+/* CONTAINER */
+/* ======================== */
+.resume-container {
+    max-width: 8.5in;
+    min-height: 11in;
+    margin: 0 auto;
+    padding: 0.75in 0.75in;
+    background: var(--white);
+}
+
+/* ======================== */
+/* HEADER */
+/* ======================== */
+.resume-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 3px solid var(--black);
+}
+
+.name-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.resume-name {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    line-height: 0.9;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    color: var(--black);
+}
+
+.tagline {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.contact-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.contact-item {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    font-weight: 400;
+    text-align: right;
+}
+
+/* ======================== */
+/* SECTIONS */
+/* ======================== */
+.resume-section {
+    margin-bottom: 2rem;
+}
+
+.section-label {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.25rem;
+}
+
+/* ======================== */
+/* MANIFESTO */
+/* ======================== */
+.manifesto-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--gray-mid);
+}
+
+.manifesto-text strong {
+    color: var(--black);
+    font-weight: 700;
+}
+
+/* ======================== */
+/* COMPETENCIES */
+/* ======================== */
+.competencies-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.comp-category {
+    padding: 0.75rem;
+    border: 1px solid var(--gray-light);
+    background: var(--white);
+}
+
+.comp-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.comp-items {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--gray-mid);
+}
+
+/* ======================== */
+/* EXPERIENCE */
+/* ======================== */
+.job-entry {
+    margin-bottom: 1.5rem;
+    page-break-inside: avoid;
+}
+
+.job-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    align-items: start;
+}
+
+.job-title-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.job-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: var(--black);
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+}
+
+.job-company {
+    font-size: 0.9rem;
+    color: var(--gray-mid);
+    font-weight: 600;
+}
+
+.job-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--gray-light);
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.job-achievements {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.job-achievements li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--gray-mid);
+}
+
+.job-achievements li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.job-achievements li strong {
+    color: var(--black);
+    font-weight: 700;
+}
+
+/* ======================== */
+/* CREDENTIALS */
+/* ======================== */
+.credentials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.credential-block {
+    page-break-inside: avoid;
+}
+
+.credential-item {
+    margin-bottom: 0.75rem;
+    padding-left: 0.5rem;
+    border-left: 2px solid var(--accent);
+}
+
+.credential-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--black);
+    margin-bottom: 0.15rem;
+}
+
+.credential-detail {
+    font-size: 0.85rem;
+    color: var(--gray-mid);
+    font-style: italic;
+}
+
+.credential-org {
+    font-size: 0.8rem;
+    color: var(--gray-light);
+    margin-top: 0.15rem;
+}
+
+/* ======================== */
+/* FOOTER */
+/* ======================== */
+.resume-footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 3px solid var(--black);
+    text-align: center;
+}
+
+.footer-statement {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+}
+
+/* ======================== */
+/* PRINT STYLES */
+/* ======================== */
+@media print {
+    body {
+        background: white;
+    }
+    
+    .resume-container {
+        max-width: 100%;
+        padding: 0.5in;
+        margin: 0;
+    }
+    
+    .resume-header {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+    }
+    
+    .resume-name {
+        font-size: 3rem;
+    }
+    
+    .section-label {
+        font-size: 1.3rem;
+    }
+    
+    .resume-section {
+        margin-bottom: 1.5rem;
+    }
+    
+    .job-entry {
+        page-break-inside: avoid;
+    }
+    
+    .credentials-grid {
+        page-break-inside: avoid;
+    }
+    
+    .resume-footer {
+        margin-top: 2rem;
+        page-break-before: avoid;
+    }
+    
+    /* Ensure colors print */
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* ======================== */
+/* RESPONSIVE - SCREEN ONLY */
+/* ======================== */
+@media screen and (max-width: 768px) {
+    .resume-container {
+        padding: 1rem;
+    }
+    
+    .resume-header {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .contact-block {
+        align-items: flex-start;
+    }
+    
+    .contact-item {
+        text-align: left;
+    }
+    
+    .resume-name {
+        font-size: 2.5rem;
+    }
+    
+    .competencies-grid,
+    .credentials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .job-header {
+        grid-template-columns: 1fr;
+    }
+    
+    .job-date {
+        white-space: normal;
+    }
+}
+
+/* ======================== */
+/* ATS-FRIENDLY FALLBACKS */
+/* ======================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Ensure text is selectable and searchable */
+::selection {
+    background: var(--accent);
+    color: var(--white);
+}
